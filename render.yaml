@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: naling-lab6-frontend
+    runtime: static
+    branch: main
+    buildCommand: npm ci && npm run build
+    staticPublishPath: ./dist
+    envVars:
+      - key: VITE_API_URL
+        sync: false
