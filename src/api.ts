@@ -21,9 +21,14 @@ async function request<T>(
   if (options.body) headers.set('Content-Type', 'application/json')
   if (accessToken) headers.set('Authorization', `Bearer ${accessToken}`)
 
+  const apiPath =
+    API_BASE_URL.endsWith('/api') && path.startsWith('/api/')
+      ? path.slice('/api'.length)
+      : path
+
   let response: Response
   try {
-    response = await fetch(`${API_BASE_URL}${path}`, { ...options, headers })
+    response = await fetch(`${API_BASE_URL}${apiPath}`, { ...options, headers })
   } catch {
     throw new Error('Could not reach the API. Check the API URL and your connection.')
   }

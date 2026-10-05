@@ -20,6 +20,13 @@ Create an active user in the backend's `users` table with a password created
 using PHP `password_hash()` before signing in. The backend also requires the
 `users` and `refresh_tokens` tables.
 
+For Render, `VITE_API_BASE_URL` must use the backend service URL (not the
+frontend URL). It can be the backend origin or the backend URL ending in
+`/api`; the frontend handles either format without duplicating the `/api`
+segment. The backend root URL returns a JSON health response with
+`status: "okay"` and `message: "LavaLust is running"`. If the Render backend
+service has a different hostname, update the example URL to match it.
+
 ## API contract
 
 The frontend expects the following routes under the configured base URL:
